@@ -1,0 +1,1 @@
+{"componentChunkName":"component---src-templates-tag-page-js","path":"/tags/suigan","webpackCompilationHash":"36a5bcfc6fb8a5f3900d","result":{"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"fields":{"slug":"/第一篇博客/"},"frontmatter":{"title":"我的第一篇博客","date":"September 06, 2019"}}}]}},"pageContext":{"isCreatedByStatefulCreatePages":false,"tag":"suigan"}}}
