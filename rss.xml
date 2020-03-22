@@ -8,7 +8,7 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>jiangjiawen的博客</title>
-        <link>jiangjiawen.github.io/</link>
+        <link>/</link>
         <description>MemE 是一个强大且可高度定制的 GoHugo 博客主题，专为个人博客设计。</description>
         <generator>Hugo 0.67.1 https://gohugo.io/</generator>
         
@@ -23,15 +23,15 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Sun, 22 Mar 2020 21:43:10 +0800</lastBuildDate>
+        <lastBuildDate>Sun, 22 Mar 2020 22:00:39 +0800</lastBuildDate>
         
-            <atom:link rel="self" type="application/rss+xml" href="jiangjiawen.github.io/rss.xml" />
+            <atom:link rel="self" type="application/rss+xml" href="/rss.xml" />
         
         
             <item>
                 <title>夷夏之辩</title>
-                <link>jiangjiawen.github.io/posts/%E5%A4%B7%E5%A4%8F%E4%B9%8B%E8%BE%A9/</link>
-                <guid isPermaLink="true">jiangjiawen.github.io/posts/%E5%A4%B7%E5%A4%8F%E4%B9%8B%E8%BE%A9/</guid>
+                <link>/posts/%E5%A4%B7%E5%A4%8F%E4%B9%8B%E8%BE%A9/</link>
+                <guid isPermaLink="true">/posts/%E5%A4%B7%E5%A4%8F%E4%B9%8B%E8%BE%A9/</guid>
                 <pubDate>Sun, 22 Mar 2020 21:16:22 +0800</pubDate>
                 
                     <author>jiangjiawentz@gmail.com (jiangjiawen)</author>
@@ -108,13 +108,13 @@
                                 
                                 
                                 
-                                    <category domain="jiangjiawen.github.io/tags/history/">history</category>
+                                    <category domain="/tags/history/">history</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="jiangjiawen.github.io/tags/%E7%9E%8E%E5%87%A0%E6%8A%8A%E8%AF%B4/">瞎几把说</category>
+                                    <category domain="/tags/%E7%9E%8E%E5%87%A0%E6%8A%8A%E8%AF%B4/">瞎几把说</category>
                                 
                             
                         

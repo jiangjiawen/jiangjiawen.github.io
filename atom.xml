@@ -4,10 +4,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">jiangjiawen的博客</title>
     <subtitle type="html">MemE 是一个强大且可高度定制的 GoHugo 博客主题，专为个人博客设计。</subtitle>
-    <updated>2020-03-22T21:43:10+08:00</updated>
-    <id>jiangjiawen.github.io/</id>
-    <link rel="alternate" type="text/html" href="jiangjiawen.github.io/" />
-    <link rel="self" type="application/atom+xml" href="jiangjiawen.github.io/atom.xml" />
+    <updated>2020-03-22T22:00:39+08:00</updated>
+    <id>/</id>
+    <link rel="alternate" type="text/html" href="/" />
+    <link rel="self" type="application/atom+xml" href="/atom.xml" />
     <author>
             <name>jiangjiawen</name>
             <uri>/</uri>
@@ -18,8 +18,8 @@
     <generator uri="https://gohugo.io/" version="0.67.1">Hugo</generator>
         <entry>
             <title type="text">夷夏之辩</title>
-            <link rel="alternate" type="text/html" href="jiangjiawen.github.io/posts/%E5%A4%B7%E5%A4%8F%E4%B9%8B%E8%BE%A9/" />
-            <id>jiangjiawen.github.io/posts/%E5%A4%B7%E5%A4%8F%E4%B9%8B%E8%BE%A9/</id>
+            <link rel="alternate" type="text/html" href="/posts/%E5%A4%B7%E5%A4%8F%E4%B9%8B%E8%BE%A9/" />
+            <id>/posts/%E5%A4%B7%E5%A4%8F%E4%B9%8B%E8%BE%A9/</id>
             <updated>2020-03-22T21:20:38+08:00</updated>
             <published>2020-03-22T21:16:22+08:00</published>
             <author>
@@ -101,13 +101,13 @@
                             
                             
                             
-                                <category scheme="jiangjiawen.github.io/tags/history/" term="history" label="history" />
+                                <category scheme="/tags/history/" term="history" label="history" />
                             
                         
                             
                             
                             
-                                <category scheme="jiangjiawen.github.io/tags/%E7%9E%8E%E5%87%A0%E6%8A%8A%E8%AF%B4/" term="瞎几把说" label="瞎几把说" />
+                                <category scheme="/tags/%E7%9E%8E%E5%87%A0%E6%8A%8A%E8%AF%B4/" term="瞎几把说" label="瞎几把说" />
                             
                         
                     
