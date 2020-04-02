@@ -23,10 +23,148 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Sun, 22 Mar 2020 22:00:39 +0800</lastBuildDate>
+        <lastBuildDate>Thu, 02 Apr 2020 11:50:10 +0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss+xml" href="/rss.xml" />
         
+        
+            <item>
+                <title>编程语言陷阱收录</title>
+                <link>/posts/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E9%99%B7%E9%98%B1%E6%94%B6%E5%BD%95/</link>
+                <guid isPermaLink="true">/posts/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E9%99%B7%E9%98%B1%E6%94%B6%E5%BD%95/</guid>
+                <pubDate>Thu, 02 Apr 2020 09:38:10 +0800</pubDate>
+                
+                    <author>jiangjiawentz@gmail.com (jiangjiawen)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description><![CDATA[<h2 id="简要说明">简要说明</h2>
+<p>有些代码写出来好像没什么问题，但是运行却得不出想要的结果，这种意料之外的代码可以称为陷阱，英文叫做gotchas。这个博客就是记录那些从别人文章里看到过的陷阱，自己写一遍也是加深印象，而且这些陷阱也能帮助我理解语言。深入理解语言一直是我的弱项。</p>
+<h2 id="go-gotchas">Go Gotchas</h2>
+<h3 id="slice-gotchas">Slice Gotchas</h3>
+<p>很多Golang的博客好像都会讲到这个slice的问题，基本都是出现在slice的内建函数<code>append()</code>的问题。下面是一个简单例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="kd">func</span> <span class="nf">doSth</span><span class="p">(</span><span class="nx">sliceint</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;before one=%v\n&#34;</span><span class="p">,</span> <span class="nx">sliceint</span><span class="p">)</span>
+	<span class="nx">sliceanother</span> <span class="o">:=</span> <span class="nx">sliceint</span><span class="p">[:]</span>
+	<span class="nx">sliceanother</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">sliceanother</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;after append one=%v, another=%v\n&#34;</span><span class="p">,</span> <span class="nx">sliceint</span><span class="p">,</span> <span class="nx">sliceanother</span><span class="p">)</span>
+	<span class="nx">sliceanother</span><span class="p">[</span><span class="mi">0</span><span class="p">]=</span><span class="mi">99</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;after assign one=%v, another=%v\n&#34;</span><span class="p">,</span> <span class="nx">sliceint</span><span class="p">,</span> <span class="nx">sliceanother</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">slice10</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+	<span class="nf">doSth</span><span class="p">(</span><span class="nx">slice10</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>输出结果是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="nx">before</span> <span class="nx">one</span><span class="p">=[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nx">after</span> <span class="nx">append</span> <span class="nx">one</span><span class="p">=[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">another</span><span class="p">=[</span><span class="mi">0</span> <span class="mi">100</span><span class="p">]</span>
+<span class="nx">after</span> <span class="nx">assign</span> <span class="nx">one</span><span class="p">=[</span><span class="mi">99</span><span class="p">],</span> <span class="nx">another</span><span class="p">=[</span><span class="mi">99</span> <span class="mi">100</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>问题就是Go的3个数据类型:map,slice,array都是引用类型，将一个slice赋给另一个slice，它们底层指向的数组都是同一个数组，所以如果要是想让两个slice不同需要使用<code>copy()</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="kd">func</span> <span class="nf">doCopy</span><span class="p">(</span><span class="nx">sliceint</span> <span class="p">[]</span><span class="kt">int</span><span class="p">){</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;before one=%v\n&#34;</span><span class="p">,</span> <span class="nx">sliceint</span><span class="p">)</span>
+	<span class="nx">sliceanother</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">sliceint</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="nx">sliceint</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+	<span class="nb">copy</span><span class="p">(</span><span class="nx">sliceanother</span><span class="p">,</span> <span class="nx">sliceint</span><span class="p">)</span>
+	<span class="nx">sliceanother</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">sliceanother</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;after append one=%v, another=%v\n&#34;</span><span class="p">,</span> <span class="nx">sliceint</span><span class="p">,</span> <span class="nx">sliceanother</span><span class="p">)</span>
+	<span class="nx">sliceanother</span><span class="p">[</span><span class="mi">0</span><span class="p">]=</span><span class="mi">99</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;after assign one=%v, another=%v\n&#34;</span><span class="p">,</span> <span class="nx">sliceint</span><span class="p">,</span> <span class="nx">sliceanother</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">slice10</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+	<span class="nf">doCopy</span><span class="p">(</span><span class="nx">slice10</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>输出结果就正常了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="nx">before</span> <span class="nx">one</span><span class="p">=[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nx">after</span> <span class="nx">append</span> <span class="nx">one</span><span class="p">=[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">another</span><span class="p">=[</span><span class="mi">0</span> <span class="mi">100</span><span class="p">]</span>
+<span class="nx">after</span> <span class="nx">assign</span> <span class="nx">one</span><span class="p">=[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">another</span><span class="p">=[</span><span class="mi">99</span> <span class="mi">100</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>分辨用copy就对了。本内容参考博客 <a href="https://bluxte.net/musings/2018/04/10/go-good-bad-ugly/">go-good-bad-ugly</a>。代码在<a href="https://github.com/jiangjiawen/learncodebyexample/blob/master/go/detail/slicegotchas.go">github</a></p>
+<h2 id="js-gotchas">JS Gotchas</h2>
+]]></description>
+                
+                
+                
+                
+                
+                    
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="/tags/programming/">programming</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="/tags/%E6%94%B6%E9%9B%86/">收集</category>
+                                
+                            
+                        
+                    
+                
+            </item>
         
             <item>
                 <title>夷夏之辩</title>
