@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Fri, 03 Apr 2020 16:36:47 +0800</lastBuildDate>
+        <lastBuildDate>Fri, 03 Apr 2020 17:15:35 +0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss+xml" href="/rss.xml" />
         
@@ -182,7 +182,7 @@
 </div>
 </div><p>我的个人理解是注意<code>doPrint()</code>这里的两个<code>()</code>，我认为的顺序是第一个<code>()</code>是函数本身，里面打印<code>inner</code>为普通执行，第二个<code>()</code>表述函数的返回，它被<code>defer</code>了，所以再执行<code>mian</code>后才会执行<code>innerinner</code>。</p>
 <p>更多<code>defer</code>陷阱可以看<a href="https://blog.learngoprogramming.com/gotchas-of-defer-in-go-1-8d070894cb01">gotchas-of-defer-in-go</a></p>
-<h3 id="pass-by-pointer-is-not-a-good-performance">pass by pointer is not a good performance</h3>
+<h3 id="pass-by-pointer-may-perform-not-good">pass by pointer may perform not good</h3>
 <p>如果想通过函数同时改变某个变量的值，传指针是一个非常好的操作，但是没想到在Go语言中，它的性能实际上却并没有提高。因为Go有GC机制，使用指针就将你的数据放在了堆中，GC会去判断销毁，这是一个损耗时间的地方，反而不如使用一种特别的传值方法。</p>
 <p>这个个博客<a href="https://medium.com/better-programming/why-you-should-avoid-pointers-in-go-36724365a2a7">why-you-should-avoid-pointers-in-go</a> 就介绍了这种特别方法。这个方法就是改变值并返回值，很简单。代码区别如下：</p>
 <div class="highlight"><div class="chroma">
