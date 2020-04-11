@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">jiangjiawen的博客</title>
     <subtitle type="html">MemE 是一个强大且可高度定制的 GoHugo 博客主题，专为个人博客设计。</subtitle>
-    <updated>2020-04-03T17:15:35+08:00</updated>
+    <updated>2020-04-11T11:50:59+08:00</updated>
     <id>/</id>
     <link rel="alternate" type="text/html" href="/" />
     <link rel="self" type="application/atom+xml" href="/atom.xml" />
@@ -20,7 +20,7 @@
             <title type="text">编程语言陷阱收录</title>
             <link rel="alternate" type="text/html" href="/posts/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E9%99%B7%E9%98%B1%E6%94%B6%E5%BD%95/" />
             <id>/posts/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E9%99%B7%E9%98%B1%E6%94%B6%E5%BD%95/</id>
-            <updated>2020-04-03T17:15:25+08:00</updated>
+            <updated>2020-04-11T11:50:39+08:00</updated>
             <published>2020-04-02T09:38:10+08:00</published>
             <author>
                     <name>jiangjiawen</name>
@@ -177,7 +177,7 @@
 <p>更多<code>defer</code>陷阱可以看<a href="https://blog.learngoprogramming.com/gotchas-of-defer-in-go-1-8d070894cb01">gotchas-of-defer-in-go</a></p>
 <h3 id="pass-by-pointer-may-perform-not-good">pass by pointer may perform not good</h3>
 <p>如果想通过函数同时改变某个变量的值，传指针是一个非常好的操作，但是没想到在Go语言中，它的性能实际上却并没有提高。因为Go有GC机制，使用指针就将你的数据放在了堆中，GC会去判断销毁，这是一个损耗时间的地方，反而不如使用一种特别的传值方法。</p>
-<p>这个个博客<a href="https://medium.com/better-programming/why-you-should-avoid-pointers-in-go-36724365a2a7">why-you-should-avoid-pointers-in-go</a> 就介绍了这种特别方法。这个方法就是改变值并返回值，很简单。代码区别如下：</p>
+<p>这个博客<a href="https://medium.com/better-programming/why-you-should-avoid-pointers-in-go-36724365a2a7">why-you-should-avoid-pointers-in-go</a> 就介绍了这种特别方法。这个方法就是改变值并返回值，很简单。代码区别如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -315,7 +315,82 @@
 <span class="nx">BenchmarkWithValue</span><span class="o">-</span><span class="mi">4</span>             <span class="mi">4010985</span>               <span class="mi">294</span> <span class="nx">ns</span><span class="o">/</span><span class="nx">op</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="js-gotchas">JS Gotchas</h2>
+</div><h3 id="nil-interface">nil interface</h3>
+<p>好吧，这个陷阱依然收录自<a href="https://bluxte.net/musings/2018/04/10/go-good-bad-ugly/">go-good-bad-ugly</a>。这个博客的确牛逼。go的interface{}是有nil值的，它值是nil但是判断时候它不是nil的，就很矛盾。如下代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="kd">type</span> <span class="nx">Explodes</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nf">Bang</span><span class="p">()</span>
+    <span class="nf">Boom</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c1">// Type Bomb implements Explodes
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Bomb</span> <span class="kd">struct</span> <span class="p">{}</span>
+<span class="kd">func</span> <span class="p">(</span><span class="o">*</span><span class="nx">Bomb</span><span class="p">)</span> <span class="nf">Bang</span><span class="p">()</span> <span class="p">{}</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Bomb</span><span class="p">)</span> <span class="nf">Boom</span><span class="p">()</span> <span class="p">{}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">bomb</span> <span class="o">*</span><span class="nx">Bomb</span> <span class="p">=</span> <span class="kc">nil</span>
+    <span class="kd">var</span> <span class="nx">explodes</span> <span class="nx">Explodes</span> <span class="p">=</span> <span class="nx">bomb</span>
+    <span class="nb">println</span><span class="p">(</span><span class="nx">bomb</span><span class="p">,</span> <span class="nx">explodes</span><span class="p">)</span> <span class="c1">// &#39;0x0 (0x1084fe0,0x0)&#39;
+</span><span class="c1"></span>    <span class="k">if</span> <span class="nx">explodes</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nb">println</span><span class="p">(</span><span class="s">&#34;Not nil!&#34;</span><span class="p">)</span> <span class="c1">// &#39;Not nil!&#39; What are we doing here?!?!
+</span><span class="c1"></span>        <span class="nx">explodes</span><span class="p">.</span><span class="nf">Bang</span><span class="p">()</span>     <span class="c1">// works fine
+</span><span class="c1"></span>        <span class="nx">explodes</span><span class="p">.</span><span class="nf">Boom</span><span class="p">()</span>     <span class="c1">// panic: value method main.Bomb.Boom called using nil *Bomb pointer
+</span><span class="c1"></span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nb">println</span><span class="p">(</span><span class="s">&#34;nil!&#34;</span><span class="p">)</span>     <span class="c1">// why don&#39;t we end up here?
+</span><span class="c1"></span>    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>博客给出了解释，通过<code>println(bomb, explodes)</code>，可以看到<code>bomb</code>的确是nil，但是<code>inferface{}</code>是胖指针，第一个指向它所实现的接口Bomb的方法，另一个指向事实上的<code>Explodes</code>，它是nil的。</p>
+<p>所以可以看出简单的判断nil肯定不能成功。所以都要进行判断，用反射判断自身的value。给出的代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="k">if</span> <span class="nx">explodes</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="o">&amp;&amp;</span> <span class="p">!</span><span class="nx">reflect</span><span class="p">.</span><span class="nf">ValueOf</span><span class="p">(</span><span class="nx">explodes</span><span class="p">).</span><span class="nf">IsNil</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nb">println</span><span class="p">(</span><span class="s">&#34;Not nil!&#34;</span><span class="p">)</span> <span class="c1">// we no more end up here
+</span><span class="c1"></span>    <span class="nx">explodes</span><span class="p">.</span><span class="nf">Bang</span><span class="p">()</span>
+    <span class="nx">explodes</span><span class="p">.</span><span class="nf">Boom</span><span class="p">()</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nb">println</span><span class="p">(</span><span class="s">&#34;nil!&#34;</span><span class="p">)</span>     <span class="c1">// &#39;nil&#39; -- all good!
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这里还有一个有意思的基础问题是为什么方法<code>Bang()</code>运行成功了，而<code>Boom()</code>没有运行成功。<code>Bang()</code>已经是已有指针指向的方法，不需要逆向引用，而<code>Boom()</code>需要逆向引用，在过程中因为遇到nil而出行panic。</p>
+<h2 id="js-gotchas">JS Gotchas</h2>
 ]]></content>
             
             
