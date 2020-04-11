@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Sat, 11 Apr 2020 11:50:59 +0800</lastBuildDate>
+        <lastBuildDate>Sat, 11 Apr 2020 15:54:05 +0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss+xml" href="/rss.xml" />
         
@@ -396,7 +396,7 @@
 </span><span class="c1"></span><span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>这里还有一个有意思的基础问题是为什么方法<code>Bang()</code>运行成功了，而<code>Boom()</code>没有运行成功。<code>Bang()</code>已经是已有指针指向的方法，不需要逆向引用，而<code>Boom()</code>需要逆向引用，在过程中因为遇到nil而出行panic。</p>
+</div><p>这里还有一个有意思的基础问题是为什么方法<code>Bang()</code>运行成功了，而<code>Boom()</code>没有运行成功。<code>Bang()</code>已经是已有指针指向的方法，不需要逆向引用，而<code>Boom()</code>需要逆向引用，在过程中因为遇到nil而出现panic。</p>
 <h2 id="js-gotchas">JS Gotchas</h2>
 ]]></description>
                 
