@@ -23,10 +23,82 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Sat, 11 Apr 2020 15:54:05 +0800</lastBuildDate>
+        <lastBuildDate>Mon, 20 Apr 2020 10:11:38 +0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss+xml" href="/rss.xml" />
         
+        
+            <item>
+                <title>一句话记忆深度&机器学习算法</title>
+                <link>/posts/%E4%B8%80%E5%8F%A5%E8%AF%9D%E8%AE%B0%E5%BF%86%E6%B7%B1%E5%BA%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/</link>
+                <guid isPermaLink="true">/posts/%E4%B8%80%E5%8F%A5%E8%AF%9D%E8%AE%B0%E5%BF%86%E6%B7%B1%E5%BA%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/</guid>
+                <pubDate>Mon, 20 Apr 2020 08:09:51 +0800</pubDate>
+                
+                    <author>jiangjiawentz@gmail.com (jiangjiawen)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description><![CDATA[<h2 id="说明">说明</h2>
+<p>尽量试试用很少的语言去总结机器学习和深度学习算法。事实上这个是很难做的，其实是给自己加深某些算法的关键记忆点。</p>
+<h2 id="通常机器学习">通常机器学习</h2>
+<p>这里是普通机器学习方法的总结。</p>
+<h3 id="xgboost">XGBoost</h3>
+<p>Boosting方法，通过加新树的不断提升方法来提高准确率。主要创新在其公式的变化让其能更简单的学习增益裂变值，其优势速度快，其学习方式使得树的生成更准确。但是一些细节也让XGBoost更好更快：缺失值的处理，学习缺失值的默认方向；L1、L2正则化；列采样等一些防止过拟合方法；学习率帮助收敛；支持分布式。在很多实操中，一般都是注意这几个参数：树规模，树深度，采样参数，正则化参数，学习率。调好他们一般都能取得很好的结果。</p>
+<h2 id="深度学习">深度学习</h2>
+<p>其实搞了2年左右的深度学习，感觉最近论坛对AI落地这里的确悲观。后来跑去写接口去了。</p>
+<h3 id="卷积神经网络">卷积神经网络</h3>
+<h4 id="unet">unet</h4>
+<p>我使用最多的神经网络，一般用在医疗图像。u型结构，左右对应桥接，有深度，深度学习物体类别特征，再向左借高分辨率物体轮廓信息学习形态，这样就可以学到物体的切割实例。</p>
+<h3 id="时序神经网络">时序神经网络</h3>
+<h4 id="attention机制transforms">attention机制，transforms</h4>
+<p>其实名字从文章attention is all you need中可知，准确说是self-attention，一般用在翻译上。一句话的前后单词之间的语义关系可以自己和自己通过权重乘积来学习，然后用softmax来分化强化这种联系。自己查自己的值，用通常q，k，v来计算：query到key来找value。深度学习是玩权重的，遇事不决套权重计算，q k v自然用一些网络层来计算。这里有个教你写代码<a href="http://www.peterbloem.nl/blog/transformers">TRANSFORMERS FROM SCRATCH</a>，感觉很好。</p>
+<h3 id="图卷积神经网络">图卷积神经网络</h3>
+<h4 id="gcn">GCN</h4>
+<p>GCN出来很关注，因为我以前就是搞图挖掘的，虽然很水就是了。神经网络就是玩权重的，做卷积的。现在就是在图结构上做卷积学习图的特征。其公式一般就是</p>
+<p>$f(H^{l},A)=\alpha（D^{-\frac{1}{2}}\hat{A}D^{-\frac{1}{2}}H^{l}W^{l}）$</p>
+<p>其中$\hat{A}=A+I$, $A$是邻接矩阵，$I$是单位矩阵，即节点自己和自己连接矩阵，加起来就是完全的连接信息，直接点就是图的一种表示。$D$是节点度矩阵，图表示归一化就是$D^{-1}A$，但是他不是对称的，所以$D^{-\frac{1}{2}}\hat{A}D^{-\frac{1}{2}}$ 拉普拉斯归一化方法使得归一化结果是对称的，保持图结构信息不变。$H^{l}$和$W^{l}$ 就是输入和权重了，做卷积。一句话就是在图特征上做卷积计算，学习权重。</p>
+<p>当然没有这么简单，其实来源是ChebNet一步步变化出来的。这里就不多说了。具体可以看这个文章：<a href="https://zhuanlan.zhihu.com/p/133282394">图神经网络 GNN GAT &amp; GCN - 1</a></p>
+<p>拉普拉斯归一化的应用可以看这篇论文，Fast Random Walk with Restart and Its Applications。</p>
+<h3 id="数据增强和训练方式">数据增强和训练方式</h3>
+<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script><blockquote>
+</blockquote>
+]]></description>
+                
+                
+                
+                
+                
+                    
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="/tags/machine-learning/">machine learning</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="/tags/deep-learning/">deep learning</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="/tags/%E6%94%B6%E9%9B%86/">收集</category>
+                                
+                            
+                        
+                    
+                
+            </item>
         
             <item>
                 <title>编程语言陷阱收录</title>
