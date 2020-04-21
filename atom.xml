@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">jiangjiawen的博客</title>
     <subtitle type="html">MemE 是一个强大且可高度定制的 GoHugo 博客主题，专为个人博客设计。</subtitle>
-    <updated>2020-04-20T20:10:18+08:00</updated>
+    <updated>2020-04-21T08:11:44+08:00</updated>
     <id>/</id>
     <link rel="alternate" type="text/html" href="/" />
     <link rel="self" type="application/atom+xml" href="/atom.xml" />
@@ -20,7 +20,7 @@
             <title type="text">一句话记忆深度&机器学习算法</title>
             <link rel="alternate" type="text/html" href="/posts/%E4%B8%80%E5%8F%A5%E8%AF%9D%E8%AE%B0%E5%BF%86%E6%B7%B1%E5%BA%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/" />
             <id>/posts/%E4%B8%80%E5%8F%A5%E8%AF%9D%E8%AE%B0%E5%BF%86%E6%B7%B1%E5%BA%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/</id>
-            <updated>2020-04-20T20:07:40+08:00</updated>
+            <updated>2020-04-21T08:11:36+08:00</updated>
             <published>2020-04-20T08:09:51+08:00</published>
             <author>
                     <name>jiangjiawen</name>
@@ -49,12 +49,12 @@
 <h4 id="gcn">GCN</h4>
 <p>GCN出来很关注，因为我以前就是搞图挖掘的，虽然很水就是了。神经网络就是玩权重的，做卷积的。现在就是在图结构上做卷积学习图的特征。其公式一般就是</p>
 <p>$f(H^{l},A)=\alpha（D^{-\frac{1}{2}}\hat{A}D^{-\frac{1}{2}}H^{l}W^{l}）$</p>
-<p>其中$\hat{A}=A+I$, $A$是邻接矩阵，$I$是单位矩阵，即节点自己和自己连接矩阵，加起来就是完全的连接信息，直接点就是图的一种表示。$D$是节点度矩阵，图表示归一化就是$D^{-1}A$，但是他不是对称的，所以$D^{-\frac{1}{2}}\hat{A}D^{-\frac{1}{2}}$ 拉普拉斯归一化方法使得归一化结果是对称的，保持图结构信息不变。$H^{l}$和$W^{l}$ 就是输入和权重了，做卷积。一句话就是在图特征上做卷积计算，学习权重。</p>
+<p>其中$\hat{A}=A+I$, $A$是邻接矩阵，$I$是单位矩阵，即节点自己和自己连接矩阵，加起来就是完全的连接信息，直接点就是图的一种表示。$D$是节点度矩阵，图表示归一化就是$D^{-1}A$，但是他不是对称的，所以$D^{-\frac{1}{2}}\hat{A}D^{-\frac{1}{2}}$ 拉普拉斯归一化方法使得归一化结果是对称的，保持图结构信息不变。$H^{l}$和$W^{l}$ 就是输入节点特征和权重了，做卷积。一句话就是在图特征上做卷积计算，学习权重。其实算法目标也是图节点聚类，所以算法为了训练变成半监督式的算法。</p>
 <p>当然没有这么简单，其实来源是ChebNet一步步变化出来的。这里就不多说了。具体可以看这个文章：<a href="https://zhuanlan.zhihu.com/p/133282394">图神经网络 GNN GAT &amp; GCN - 1</a></p>
 <p>拉普拉斯归一化的应用可以看这篇论文，Fast Random Walk with Restart and Its Applications。</p>
 <h3 id="bayesian-deep-learning">Bayesian Deep Learning</h3>
 <h3 id="数据增强和训练方式">数据增强和训练方式</h3>
-<p>关于数据增强，其实对于深度学习和机器学习来说都是想办法增加样本数和保持样本平衡，想办法朝这个目标。其实对于目标检测最好也要保持卷积网络对目标物体在整个空间的感受。</p>
+<p>关于数据增强，其实对于深度学习和机器学习来说都是想办法增加样本数和保持样本平衡。其实对于目标检测最好也要保持卷积网络对目标物体在整个空间的感受。</p>
 <p>训练方式其实借鉴fastai库里一些集成的方法就很好。</p>
 <script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
