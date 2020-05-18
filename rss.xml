@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Sun, 26 Apr 2020 20:08:47 +0800</lastBuildDate>
+        <lastBuildDate>Mon, 18 May 2020 19:57:51 +0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss+xml" href="/rss.xml" />
         
@@ -44,6 +44,8 @@
 <p>这里是普通机器学习方法的总结。</p>
 <h3 id="xgboost">XGBoost</h3>
 <p>Boosting方法，通过加新树的不断提升方法来提高准确率。主要创新在其公式的变化让其能更简单的学习增益裂变值，其优势速度快，其学习方式使得树的生成更准确。但是一些细节也让XGBoost更好更快：缺失值的处理，学习缺失值的默认方向；L1、L2正则化；列采样等一些防止过拟合方法；学习率帮助收敛；支持分布式。在很多实操中，一般都是注意这几个参数：树规模，树深度，采样参数，正则化参数，学习率。调好他们一般都能取得很好的结果。</p>
+<h3 id="lsh-locality-sensitive-hash">LSH, Locality sensitive Hash</h3>
+<p>局部敏感哈希。从多维空间上说就是给点赋hashcode，距离相同的点基于hashcode的海明距离较小，即相似。所以在多维空间建立分割超平面来给点分配hashcode，这个过程分割的方法就很重要了。迭代法啊这类的。</p>
 <h2 id="深度学习">深度学习</h2>
 <p>其实搞了2年左右的深度学习，感觉最近论坛对AI落地这里的确悲观。后来跑去写接口去了。</p>
 <h3 id="卷积神经网络">卷积神经网络</h3>
