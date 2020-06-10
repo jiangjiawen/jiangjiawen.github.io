@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Wed, 10 Jun 2020 09:43:20 +0800</lastBuildDate>
+        <lastBuildDate>Wed, 10 Jun 2020 09:59:08 +0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss+xml" href="/rss.xml" />
         
@@ -64,10 +64,10 @@
 <h3 id="bayesian-deep-learning">Bayesian Deep Learning</h3>
 <p>贝叶斯深度学习方法就是将以前学习明确的权重变为学习这些权重的分布，得到一个不明确的预测值范围。其中的一些方法对有限数据集有很好的效果。下面是一些有趣的文章算法。</p>
 <h3 id="odeordinary-differential-equations-network">ODE(ordinary differential equations) network</h3>
-<p>基本思路是残差网络的形式和常微分方程很像，那么常规神经网络的隐藏层其实是可以使用ODE solvers来代替。这样会减少参数和内存或者显存消耗。简单理解这里：<a href="https://news.ycombinator.com/item?id=18676986">论文作者的解释</a>。具体的参数更新方法论文应该更详细<a href="https://papers.nips.cc/paper/7892-neural-ordinary-differential-equations.pdf">nips paper ode net</a></p>
+<p>基本思路是残差网络的形式和常微分方程很像，那么常规神经网络的隐藏层其实是可以使用ODE solvers来代替，隐藏层的每次阶梯性计算变为ODE solvers的时序性变化。这样会减少参数和内存或者显存消耗。简单理解这里：<a href="https://news.ycombinator.com/item?id=18676986">论文作者的解释</a>。具体的参数更新方法论文应该更详细<a href="https://papers.nips.cc/paper/7892-neural-ordinary-differential-equations.pdf">nips paper ode net</a></p>
 <h3 id="normalize-flow">normalize flow</h3>
 <h4 id="dropout-as-a-baysian-approximation">Dropout as a Baysian Approximation</h4>
-<p>正常训练网络，然后使用Monte Carlo Dropout方法随机放弃某些神经元（某层的某些卷积结果）来预测结果，这样得出的很多个结果呈现成一种分布，正确的结果类似正态分布。</p>
+<p>正常训练网络，然后使用Monte Carlo Dropout方法随机放弃某些神经元（某层的某些卷积结果）来预测结果，这样得出的很多个结果呈现成一种分布，类似正态分布。</p>
 <h4 id="neural-processes">Neural Processes</h4>
 <p>学习y=f(x)的分布，也就是x,y关系的分布。分成两个部分，一个学习x，y的分布，一个通过这个分布再和其他未知的x一起来预测其对应的y的分布。即一个是学习隐式分布网络，一个是预测结果网络，当然结果是一个分布区间。</p>
 <h3 id="数据增强和训练方式">数据增强和训练方式</h3>
