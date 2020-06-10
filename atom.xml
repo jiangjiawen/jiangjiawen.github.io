@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">jiangjiawen的博客</title>
     <subtitle type="html">MemE 是一个强大且可高度定制的 GoHugo 博客主题，专为个人博客设计。</subtitle>
-    <updated>2020-06-10T10:07:14+08:00</updated>
+    <updated>2020-06-10T11:03:30+08:00</updated>
     <id>/</id>
     <link rel="alternate" type="text/html" href="/" />
     <link rel="self" type="application/atom+xml" href="/atom.xml" />
@@ -20,7 +20,7 @@
             <title type="text">一句话记忆深度&机器学习算法</title>
             <link rel="alternate" type="text/html" href="/posts/%E4%B8%80%E5%8F%A5%E8%AF%9D%E8%AE%B0%E5%BF%86%E6%B7%B1%E5%BA%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/" />
             <id>/posts/%E4%B8%80%E5%8F%A5%E8%AF%9D%E8%AE%B0%E5%BF%86%E6%B7%B1%E5%BA%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/</id>
-            <updated>2020-06-10T10:07:05+08:00</updated>
+            <updated>2020-06-10T11:03:24+08:00</updated>
             <published>2020-04-20T08:09:51+08:00</published>
             <author>
                     <name>jiangjiawen</name>
@@ -63,6 +63,7 @@
 <h3 id="odeordinary-differential-equations-network">ODE(ordinary differential equations) network</h3>
 <p>基本思路是残差网络的形式和常微分方程很像，那么常规神经网络的隐藏层其实是可以使用ODE solvers来代替，隐藏层的每次阶梯性计算变为ODE solvers的时序性变化。这样会减少参数和内存或者显存消耗。简单理解这里：<a href="https://news.ycombinator.com/item?id=18676986">论文作者的解释</a>。具体的参数更新方法论文应该更详细<a href="https://papers.nips.cc/paper/7892-neural-ordinary-differential-equations.pdf">nips paper ode net</a></p>
 <h3 id="normalize-flow">normalize flow</h3>
+<p>标准化流就是设计双射函数将当前分布转换成另一种分布。<a href="https://blog.evjang.com/2018/01/nf1.html">evjiang 博客</a></p>
 <h3 id="数据增强和训练方式">数据增强和训练方式</h3>
 <p>关于数据增强，其实对于深度学习和机器学习来说都是想办法增加样本数和保持样本平衡。其实对于目标检测最好也要保持卷积网络对目标物体在整个空间的感受。</p>
 <p>训练方式其实借鉴fastai库里一些集成的方法就很好。</p>
