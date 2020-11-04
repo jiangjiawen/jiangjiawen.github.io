@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Tue, 16 Jun 2020 15:13:11 +0800</lastBuildDate>
+        <lastBuildDate>Wed, 04 Nov 2020 20:21:17 +0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss+xml" href="/rss.xml" />
         
@@ -174,7 +174,7 @@
 <span class="nx">after</span> <span class="nx">assign</span> <span class="nx">one</span><span class="p">=[</span><span class="mi">99</span><span class="p">],</span> <span class="nx">another</span><span class="p">=[</span><span class="mi">99</span> <span class="mi">100</span><span class="p">]</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>问题就是Go的slice,array是引用类型，将一个slice赋给另一个slice，它们底层指向的数组都是同一个数组，所以如果要是想让两个slice不同需要使用<code>copy()</code>。这个问题其他语言都有类似的情况，涉及语言的原始类型以及浅拷贝和深拷贝的问题，cpp好像特殊些，cpp容器为值拷贝。</p>
+</div><p>问题就是Go的slice,array是引用类型，将一个slice赋给另一个slice，它们底层指向的数组都是同一个数组，所以如果要是想让两个slice不同需要使用<code>copy()</code>。这个问题其他语言都有类似的情况，涉及语言的原始类型以及浅拷贝和深拷贝的问题。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
